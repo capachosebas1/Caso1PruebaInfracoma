@@ -19,7 +19,7 @@ public class Main {
 		
 	        //esto es la creacion del buffer primera etapa
 	        
-			BufferLimitado buf1 = new BufferLimitado(25);
+			BufferLimitado buf1 = new BufferLimitado(5);
 	        
 	        //esta es la creacion del numero
 	        
@@ -27,11 +27,11 @@ public class Main {
 	        
 	        //esto es la creacion del buffer primera etapa
 	        
-	        BufferLimitado buf2 = new BufferLimitado(25);
+	        BufferLimitado buf2 = new BufferLimitado(5);
 	        
 	        //esto es la creacion del buffer segunda etapa
 	        
-	        BufferLimitado buf3 = new BufferLimitado(25);
+	        BufferLimitado buf3 = new BufferLimitado(45);
 	        
 	        //esta es la cantidad 
 	        
@@ -41,11 +41,13 @@ public class Main {
 	        
 			ProcesoAzul p2 = new ProcesoAzul(idproductos, buf1,buf2,buf3, 5,false,2);
 			
+			ProcesoAzul p2uno = new ProcesoAzul(idproductos, buf1,buf2,buf3, 5,false,2);
+			
 			ProcesoAzul p3 = new ProcesoAzul(idproductos, buf1,buf2,buf3, 5,false,3);
 			
-			ProcesoNaranja p5 = new ProcesoNaranja(idproductos, buf1,buf2,buf3, 5,true,1);
+			ProcesoAzul p3uno = new ProcesoAzul(idproductos, buf1,buf2,buf3, 5,false,3);
 			
-			ProcesoNaranja p6 = new ProcesoNaranja(idproductos, buf1,buf2,buf3, 5,true,1);
+			ProcesoNaranja p5 = new ProcesoNaranja(idproductos, buf1,buf2,buf3, 5,true,1);
 			
 			ProcesoNaranja p7 = new ProcesoNaranja(idproductos, buf1,buf2,buf3, 5,false,2);
 			
@@ -53,31 +55,20 @@ public class Main {
 			
 			p1.start();
 			p0.start();
-			
 			p5.start();
-			p6.start();
 			
 			p2.start();
-			
+			p2uno.start();
 			p7.start();
-			
-			try {
-				System.out.println("Termina Etapa 1");
-				p7.join();
-				p2.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        
+	     
 			p3.start();
+			p3uno.start();
 			p8.start();
 			
 			try {
-				System.out.println("Termina Etapa 2");
 				p3.join();
+				p3uno.join();
 				p8.join();
-				System.out.println("Termina Etapa 3");
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

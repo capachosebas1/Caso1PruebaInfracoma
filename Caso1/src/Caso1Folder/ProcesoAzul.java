@@ -29,12 +29,16 @@ public class ProcesoAzul extends Thread{
 		
 	}
 	
+	//MandarProducto este metodo manda los productos al primer buffer desde la etapa 1
+	
 	private void MandarProducto(int id)
 	{
 		
 		this.buf.insertProductAzul("El producto con el id" + id + ", sale del proceso 0 en la etapa 1  a la etapa 2");
 		
 	}
+	
+	//imprimirProducto este metodo recoge los productos del primer buffer en la etapa 2
 	
 	private void imprimirProducto(String message)
 	{
@@ -43,6 +47,8 @@ public class ProcesoAzul extends Thread{
 		
 	}
 	
+	//imprimirProductoEstapa3 este metodo recoge los productos del segundo buffer en la etapa 3
+	
 	private void imprimirProductoEstapa3(String message)
 	{
 		
@@ -50,12 +56,16 @@ public class ProcesoAzul extends Thread{
 		
 	}
 	
+	//MandarProductoEtapa2 este metodo manda los productos al segundo buffer desde la etapa 2
+	
 	private void MandarProductoEtapa2(String message)
 	{
 
 		this.buf2.insertProductAzul(message  + " El producto sale de la etapa 2 a etapa 3");
 		
 	}
+	
+	//MandarProductoEtapa3 este metodo manda los productos al tercer buffer desde la etapa 3
 	
 	private void MandarProductoEtapa3(String message)
 	{
@@ -67,6 +77,9 @@ public class ProcesoAzul extends Thread{
 	@Override
 	public void run() 
 	{
+		
+		//Primera etapa 
+		
 		if (tipo==true && etapa==1)
 		{
 			
@@ -77,6 +90,8 @@ public class ProcesoAzul extends Thread{
 			}
 			
 		}
+		
+		//Segunda etapa 
 		
 		if (etapa==2)
 		
@@ -91,6 +106,8 @@ public class ProcesoAzul extends Thread{
 				{
 					return;
 				}
+
+				//recibe y envia etapa 
 				
 				this.MandarProductoEtapa2(message);
 				
@@ -99,6 +116,8 @@ public class ProcesoAzul extends Thread{
 			}
 			
 		}
+		
+		//Tercera etapa 
 		
 		if (etapa==3)
 			
@@ -113,6 +132,8 @@ public class ProcesoAzul extends Thread{
 				{
 					return;
 				}
+				
+				//recibe y envia etapa
 				
 				this.MandarProductoEtapa3(message);
 				
