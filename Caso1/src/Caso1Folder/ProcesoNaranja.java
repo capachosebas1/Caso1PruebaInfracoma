@@ -36,30 +36,19 @@ public class ProcesoNaranja extends Thread{
 		
 	}
 	
-	private void imprimirProducto(String message)
+	private void imprimirProductoyMandarProductoEtapa2(String message)
 	{
 		
 		System.out.println(message + ", recibido en etapa 2 por proceso 1");
+		String mensaje = message + ", recibido en etapa 2 por proceso 1";
+		this.buf2.insertProductNaranaja(mensaje  + " El producto sale de la etapa 2 a etapa 3");
 		
 	}
 	
-	private void imprimirProductoEstapa3(String message)
+	private void imprimirProductoEstapa3yMandarProductoEtapa3(String message)
 	{
 		
 		System.out.println(message + ", recibido en etapa 3 por proceso 1");
-		
-	}
-	
-	private void MandarProductoEtapa2(String message)
-	{
-
-		this.buf2.insertProductNaranaja(message  + " El producto sale de la etapa 2 a etapa 3");
-		
-	}
-	
-	private void MandarProductoEtapa3(String message)
-	{
-		
 		this.buf3.insertProductNaranaja(message  + " El producto sale de la etapa 3 a etapa final");
 		
 	}
@@ -92,9 +81,7 @@ public class ProcesoNaranja extends Thread{
 					return;
 				}
 				
-				this.MandarProductoEtapa2(message);
-				
-				this.imprimirProducto(message);
+				this.imprimirProductoyMandarProductoEtapa2(message);
 				
 			}
 			
@@ -114,9 +101,7 @@ public class ProcesoNaranja extends Thread{
 					return;
 				}
 				
-				this.MandarProductoEtapa3(message);
-				
-				this.imprimirProductoEstapa3(message);
+				this.imprimirProductoEstapa3yMandarProductoEtapa3(message);
 			
 				
 			}

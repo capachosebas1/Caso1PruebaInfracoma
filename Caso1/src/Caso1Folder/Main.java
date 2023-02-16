@@ -27,7 +27,7 @@ public class Main {
 	        
 	        //esto es la creacion del buffer primera etapa
 	        
-	        BufferLimitado buf2 = new BufferLimitado(5);
+	        BufferLimitado buf2 = new BufferLimitado(25);
 	        
 	        //esto es la creacion del buffer segunda etapa
 	        
@@ -64,15 +64,6 @@ public class Main {
 			p3.start();
 			p3uno.start();
 			p8.start();
-			
-			try {
-				p3.join();
-				p3uno.join();
-				p8.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		
 	}
 

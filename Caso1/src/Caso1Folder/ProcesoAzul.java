@@ -38,39 +38,27 @@ public class ProcesoAzul extends Thread{
 		
 	}
 	
-	//imprimirProducto este metodo recoge los productos del primer buffer en la etapa 2
+	//imprimirProducto este metodo recoge los productos del primer buffer en la etapa 2 y
+	//este metodo manda los productos al segundo buffer desde la etapa 2
 	
-	private void imprimirProducto(String message)
+	private void imprimirProductoyMandarProductoEtapa2(String message)
 	{
 		
 		System.out.println(message + ", recibido en etapa 2 por proceso 0");
+		String mensaje = message + ", recibido en etapa 2 por proceso 0";
+		this.buf2.insertProductAzul(mensaje  + " El producto sale de la etapa 2 a etapa 3");
 		
 	}
 	
 	//imprimirProductoEstapa3 este metodo recoge los productos del segundo buffer en la etapa 3
+	//MandarProductoEtapa3 este metodo manda los productos al tercer buffer desde la etapa 3
 	
-	private void imprimirProductoEstapa3(String message)
+	private void imprimirProductoEstapa3yMandarProductoEtapa3(String message)
 	{
 		
 		System.out.println(message + ", recibido en etapa 3 por proceso 0");
-		
-	}
-	
-	//MandarProductoEtapa2 este metodo manda los productos al segundo buffer desde la etapa 2
-	
-	private void MandarProductoEtapa2(String message)
-	{
-
-		this.buf2.insertProductAzul(message  + " El producto sale de la etapa 2 a etapa 3");
-		
-	}
-	
-	//MandarProductoEtapa3 este metodo manda los productos al tercer buffer desde la etapa 3
-	
-	private void MandarProductoEtapa3(String message)
-	{
-		
-		this.buf3.insertProductAzul(message  + " El producto sale de la etapa 3 a etapa final");
+		String mensaje = message + ", recibido en etapa 3 por proceso 0";
+		this.buf3.insertProductAzul(mensaje  + " El producto sale de la etapa 3 a etapa final");
 		
 	}
 	
@@ -109,9 +97,7 @@ public class ProcesoAzul extends Thread{
 
 				//recibe y envia etapa 
 				
-				this.MandarProductoEtapa2(message);
-				
-				this.imprimirProducto(message);
+				this.imprimirProductoyMandarProductoEtapa2(message);
 				
 			}
 			
@@ -135,9 +121,7 @@ public class ProcesoAzul extends Thread{
 				
 				//recibe y envia etapa
 				
-				this.MandarProductoEtapa3(message);
-				
-				this.imprimirProductoEstapa3(message);
+				this.imprimirProductoEstapa3yMandarProductoEtapa3(message);
 			
 				
 			}

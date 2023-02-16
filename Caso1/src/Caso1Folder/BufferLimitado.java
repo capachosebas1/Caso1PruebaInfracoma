@@ -42,7 +42,7 @@ public class BufferLimitado {
 		
 		this.buffer.add(message);
 		
-		notify();
+		notifyAll();
 		
 	}
 	
@@ -50,7 +50,7 @@ public class BufferLimitado {
 	{
 		String message = "";
 		
-		while (this.buffer.size() == 0)
+		while (this.buffer.size() == 0 || (buffer.get(0).contains("proceso 0"))==false)
 		{
 			
 			try {
@@ -62,17 +62,10 @@ public class BufferLimitado {
 			
 		}
 		
-		for (int j = 0; j < buffer.size();j++)
-		{
-			if ((buffer.get(j).contains("proceso 0"))==true)
-				{
-					message = this.buffer.remove(j);
+		message = this.buffer.remove(0);
+		
+		notifyAll();
 					
-					notify();
-					
-					return message;
-				}
-		}
 		return message;
 		
 	}
@@ -81,7 +74,7 @@ public class BufferLimitado {
 	{
 		String message = "";
 		
-		while (this.buffer.size() == 0)
+		while (this.buffer.size() == 0||(buffer.get(0).contains("recibido en etapa 2 por proceso 0"))==false)
 		{
 			
 			try {
@@ -93,17 +86,10 @@ public class BufferLimitado {
 			
 		}
 		
-		for (int j = 0; j < buffer.size();j++)
-		{
-			if ((buffer.get(j).contains("proceso 0 en la etapa 1  a la etapa 2 El producto sale de la etapa 2 a etapa 3"))==true)
-				{
-					message = this.buffer.remove(j);
-					
-					notify();
-					
-					return message;
-				}
-		}
+		message = this.buffer.remove(0);
+		
+		notifyAll();
+
 		return message;
 		
 	}
@@ -117,7 +103,7 @@ public class BufferLimitado {
 		{
 			
 			try {
-				wait(500);
+				wait(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -127,7 +113,7 @@ public class BufferLimitado {
 		
 		this.buffer.add(message);
 		
-		notify();
+		notifyAll();
 		
 	}
 	
@@ -135,11 +121,11 @@ public class BufferLimitado {
 	{
 		String message = "";
 		
-		while (this.buffer.size() == 0)
+		while (this.buffer.size() == 0||buffer.get(0).contains("proceso 1")==false)
 		{
 			
 			try {
-				wait(500);
+				wait(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -147,17 +133,10 @@ public class BufferLimitado {
 			
 		}
 		
-		for (int j = 0; j < buffer.size();j++)
-		{
-			if ((buffer.get(j).contains("proceso 1"))==true)
-				{
-					message = this.buffer.remove(j);
-					
-					notify();
-					
-					return message;
-				}
-		}
+		message = this.buffer.remove(0);
+		
+		notifyAll();
+		
 		return message;
 		
 	}
@@ -166,11 +145,11 @@ public class BufferLimitado {
 	{
 		String message = "";
 		
-		while (this.buffer.size() == 0)
+		while (this.buffer.size() == 0||(buffer.get(0).contains("recibido en etapa 2 por proceso 1"))==false)
 		{
 			
 			try {
-				wait(500);
+				wait(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -178,17 +157,10 @@ public class BufferLimitado {
 			
 		}
 		
-		for (int j = 0; j < buffer.size();j++)
-		{
-			if ((buffer.get(j).contains("proceso 1 en la etapa 1  a la etapa 2 El producto sale de la etapa 2 a etapa 3"))==true)
-				{
-					message = this.buffer.remove(j);
-					
-					notify();
-					
-					return message;
-				}
-		}
+		message = this.buffer.remove(0);
+		
+		notifyAll();
+		
 		return message;
 		
 	}
